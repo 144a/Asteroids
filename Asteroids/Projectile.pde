@@ -18,12 +18,17 @@ class Projectile {
   }
   
   public void update() {
+    // Adds the horizontal and vertical velocity components to projectile position
+    xPos += xVol;
+    yPos += yVol;
     
+    // Increases the main counter for projectile life span
+    counter++;
     reDraw();
   }
   
   public void reDraw() {
-    
+    ellipse((float)(xPos), (float)(yPos), 10.0, 10.0);
   }
   
   

@@ -3,7 +3,7 @@ Ship player = new Ship();
 
 Objects test = new Objects(1, 300, 350);
 
-boolean isVelInc, isRotLeft, isRotRight;
+boolean isVelInc, isRotLeft, isRotRight, isFiring;
 
 
 public void setup() {
@@ -35,6 +35,7 @@ public void updateScreen() {
   // Updates ship object
   player.update();
   test.update();
+  // println(test.checkCollision(player.getX(), player.getY()));
 }
 
 void keyPressed() {
@@ -55,8 +56,8 @@ boolean setMove(int k, boolean b) {
     return isRotRight = b;
   case 'k':
     return isVelInc = b;
-  
- 
+  case 'l':
+    return isFiring = b;
   default:
     return b;
   }
