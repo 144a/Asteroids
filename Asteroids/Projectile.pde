@@ -6,7 +6,7 @@ class Projectile {
   private double xVol;
   private double yVol;
   
-  // Determines how long projectile will exist
+  // Determines how long projectile has existed
   private double counter;
   
   Projectile(double ixpos, double iypos, double iangle) {

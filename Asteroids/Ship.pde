@@ -21,10 +21,10 @@ class Ship {
   }
   
   public int getX() {
-    return (int)(xPos);
+    return (int)(xPos) + 5;
   }
   public int getY() {
-    return (int)(yPos);
+    return (int)(yPos) + 5;
   }
   
   public void incVelocity() {

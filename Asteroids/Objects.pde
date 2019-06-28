@@ -51,7 +51,7 @@ class Objects {
   }
   
   public boolean checkCollision(double iXpos, double iYpos) {
-    if(sqrt((float)((xPos - iXpos) * (xPos - iXpos) + (yPos - iYpos) * (yPos - iYpos))) <= size * 25) {
+    if(sqrt((float)((xPos - iXpos) * (xPos - iXpos) + (yPos - iYpos) * (yPos - iYpos))) <= (size * 25) - 5) {
       
       return true;
     }
