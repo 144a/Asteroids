@@ -50,9 +50,11 @@ class Objects {
     return (int)(yPos);
   }
   
+  // Also, Hey idiot, make sure you actual read how functions work
+  // Checks distance between a point and the position of the object
   public boolean checkCollision(double iXpos, double iYpos) {
-    if(sqrt((float)((xPos - iXpos) * (xPos - iXpos) + (yPos - iYpos) * (yPos - iYpos))) <= (size * 25) - 5) {
-      
+    if(sqrt((float)((xPos - iXpos) * (xPos - iXpos) + (yPos - iYpos) * (yPos - iYpos))) <= (float)(size * 25) / 2 + 5) {
+      println("Dist:" + sqrt((float)((xPos - iXpos) * (xPos - iXpos) + (yPos - iYpos) * (yPos - iYpos))));
       return true;
     }
     return false;
