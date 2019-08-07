@@ -11,6 +11,8 @@ Objects[] objArr = new Objects[30];
 // Needed for determining key presses
 boolean isVelInc, isRotLeft, isRotRight, isFiring;
 
+// Button timer to limit shooting to within only a few frames
+int fireTimer = 0;
 
 public void setup() {
   size(800,800);
@@ -21,17 +23,47 @@ public void setup() {
 
 public void draw() {
   updateScreen();
-  
 }
 
 // Adds an additional projectile to an array, using ships current position and rotation
 public void updateFiring() {
-  
+  int i = 0;
+  boolean added = false;
+  while(i < projArr.length && !(added)) {
+    if(projArr[i] == null) {
+      projArr[i] = new Projectile(player.getX(), player.getY(), player.getAngle());
+      added = true;
+    }
+    i++;
+  }
 }
 
 // Determines collision between projectiles and objects
 public void updateProjectiles() {
-  
+  // println("r");
+  for(int n = 0; n < projArr.length; n++) {
+    if(projArr[n] != null) {
+      
+      // Run through and check for both collision and life cycle counter
+      // Update the Projectile object array accordingly
+      int j = 0;
+      while(projArr[n] != null && j < objArr.length && objArr[j] != null) {
+        if(objArr[j].checkCollision(projArr[n].getX(), projArr[n].getY())) {
+          projArr[n] = null;
+          objArr[j] = null;
+          // Needs to handle generating small asteroids from larger ones 
+        } else {
+          if(projArr[n].getCounter() > 60) {
+            projArr[n] = null;
+          }
+        }
+        j++;
+      }
+      if(projArr[n] != null) {
+        projArr[n].update();
+      }
+    }
+  }
 }
 
 // Checks for collision between objects and updates objects position
@@ -63,8 +95,15 @@ public void updateScreen() {
   if(isRotRight) {
     player.decAngle();      
   }
-  if(isFiring) {
+  // Adds to Button timer to allow for individual shots
+  if(isFiring && fireTimer == 0) {
+    fireTimer = 20;
     updateFiring();
+  }
+  
+  // Decreases Button Timer
+  if(fireTimer > 0) {
+    fireTimer--;
   }
   
   // Updates ship
@@ -74,6 +113,7 @@ public void updateScreen() {
   updateObjects();
   
   // Determines collision between projectiles and objects
+  updateProjectiles();
   
   // println(test.checkCollision(player.getX(), player.getY()));
 }

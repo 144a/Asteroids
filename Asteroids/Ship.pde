@@ -26,6 +26,9 @@ class Ship {
   public int getY() {
     return (int)(yPos);
   }
+  public double getAngle() {
+    return ship_Angle;
+  }
   
   public void incVelocity() {
     // Caps velocity as 15 pixels per frame
